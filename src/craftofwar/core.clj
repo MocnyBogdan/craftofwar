@@ -36,11 +36,10 @@
       p/wrap-params))
 
 "If tests have been run the run needs to be terminated first, or you will get the double bind error"
-(let [port (Integer. (or port (env :port) 5000))]
-(defonce server (jetty/run-jetty #'app {:port port :join? false})))
 
 ;(defonce server (jetty/run-jetty #'app {:port (Integer. (or (:port env) (:$port env))) :join? false}))
-
-(defn -main [& args]
-  (.start server)
- )
+;(defonce server (jetty/run-jetty #'app {:port (Integer/parseInt (or (System/getenv "PORT") "3000")) :join? false}))
+;(defn -main [& args] (.start server))
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) 3000))]
+    (jetty/run-jetty #'app {:port port :join? false})))
