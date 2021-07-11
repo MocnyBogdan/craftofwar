@@ -12,6 +12,7 @@
                  [ring "1.8.2"]
                  [hiccup "1.0.5"]
                  [compojure "1.5.1"]
+                 [environ "1.2.0"]
                  [medley "1.3.0"]]
   :main ^:skip-aot craftofwar.core
   :target-path "target/%s"

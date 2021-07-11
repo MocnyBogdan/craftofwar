@@ -8,6 +8,7 @@
             [craftofwar.sample-data :as sample]
             [ring.middleware.params :as p]
             [medley.core :as medley]
+            [environ.core :refer [env]]
             ))
 
 (defn unwrapped-quest [req]
@@ -35,7 +36,7 @@
       p/wrap-params))
 
 "If tests have been run the run needs to be terminated first, or you will get the double bind error"
-(defonce server (jetty/run-jetty #'app {:port 3000 :join? false}))
+(defonce server (jetty/run-jetty #'app {:port (Integer. (or (env :port) 8000)) :join? false}))
 
 (defn -main [& args]
   (.start server)
