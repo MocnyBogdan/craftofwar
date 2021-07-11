@@ -37,9 +37,11 @@
 
 "If tests have been run the run needs to be terminated first, or you will get the double bind error"
 
-;(defonce server (jetty/run-jetty #'app {:port (Integer. (or (:port env) (:$port env))) :join? false}))
+"for local development"
 ;(defonce server (jetty/run-jetty #'app {:port (Integer/parseInt (or (System/getenv "PORT") "3000")) :join? false}))
 ;(defn -main [& args] (.start server))
+
+"for Heroku"
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
     (jetty/run-jetty #'app {:port port :join? false})))
