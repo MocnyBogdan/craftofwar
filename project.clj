@@ -15,6 +15,7 @@
                  [medley "1.3.0"]]
   :main ^:skip-aot craftofwar.core
   :target-path "target/%s"
+  :uberjar-name "craftofwar.jar"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
 
